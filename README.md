@@ -1,7 +1,7 @@
 
 <h1 align="center">PearlBox</h1>
 
-<p align="center"><strong>让 Pearl 挖矿，从选择开始。</strong></p>
+<p align="center"><strong>村头老奶奶都能简单操作的MinerBox。</strong></p>
 
 <p align="center">Windows 单 EXE · 约 50 MB 下载体积 · 简体中文 / English / Русский</p>
 
