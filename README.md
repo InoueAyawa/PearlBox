@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="assets/pearlbox-logo.png" width="96" height="96" alt="PearlBox 猫猫矿工 Logo">
-</p>
 
 <h1 align="center">PearlBox</h1>
 
