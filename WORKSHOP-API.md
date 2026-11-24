@@ -1,6 +1,6 @@
 # PearlBox plugin API
 
-Client **1.0.0** · Local API **v1** · [简体中文](WORKSHOP-API.md) · [Русский](WORKSHOP-API.ru.md) · [OpenAPI 3.1 reference](workshop.openapi.json)
+Client **1.0.0** · Local API **v1** · [简体中文](WORKSHOP-API.zh-CNmd) · [Русский](WORKSHOP-API.ru.md) · [OpenAPI 3.1 reference](workshop.openapi.json)
 
 To show hashrate, power and temperature together in the Advanced panel, all you need is a JSON file. Version 1.0.0 accepts **read-only monitoring plugins**: their files describe which readings to display and cannot run scripts, commands or external programs. The fleet controller, managed device and XMR CPU miner are built into the client and use a different type of file for installation.
 
