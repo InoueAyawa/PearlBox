@@ -6,8 +6,6 @@
 
 <p align="center"><strong>村口老奶奶来了都可以一键使用的整合包</strong></p>
 
-<p align="center">Windows 单 EXE · Linux x64 桌面与网页 · 简体中文 / English / Русский</p>
-
 <p align="center">
   <a href="https://pearlbox.app">官网</a> ·
   <a href="#快速开始">快速开始</a> ·
