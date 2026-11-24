@@ -4,93 +4,90 @@
 
 <h1 align="center">PearlBox</h1>
 
-<p align="center"><strong>村头老奶奶都能简单操作的MinerBox。</strong></p>
+<p align="center"><strong>Pearl mining starts with your choice.</strong></p>
+
+<p align="center">Windows single EXE · Linux x64 desktop and web · 简体中文 / English / Русский</p>
 
 <p align="center">
-  <a href="https://pearlbox.app">官网</a> ·
-  <a href="#快速开始">快速开始</a> ·
-  <a href="README.en.md">English</a> ·
+  <a href="https://pearlbox.app">Website</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
   <a href="README.ru.md">Русский</a>
 </p>
 
-PearlBox 将锄头、矿池、显卡调校、版本更新与本地钱包整合到一个 Windows 客户端。填写自己的 PRL 地址和矿工名，选择软件与矿池，便可开始挖矿。
+PearlBox brings miners, pools, GPU tuning, updates and a local wallet into one Windows desktop app. Enter your own PRL payout address and worker name, choose a miner and pool, and start mining.
 
-**选择锄头与版本 → 匹配可用矿池 → 填写收款地址 → 开始挖矿**
+**Choose a miner and version → Select a compatible pool → Enter your address → Start mining**
 
-当前功能基于客户端 **0.9.12** 。
+This overview covers client **1.0.0**.
 
-## 功能亮点
+Import local plugins from Advanced → Plugins → ＋. The dashboard includes a GPU table and copyable logs; startup and tuning options are grouped under Unattended mode.
 
-| 功能 | 使用体验 |
+Linux x64 offers a GTK desktop and a browser UI for headless rigs, initially supporting NVIDIA PearlFortune CUDA 12/13. The plugin workshop on Windows and Linux offers a fleet controller, managed device agent and optional XMR CPU dual mining.
+
+PearlBox opens in English. The first-run guide can be skipped and reopened from **Advanced → Quick guide**. On compatible pools, select **Receive USDT** beside the wallet address. A second address field shows the conversion fee and payout network; the regular pool fee stays beside the pool.
+
+On Peryn, OneZeroMiner and MH-Miner can switch between PPS+ and PPLNS next to **Test latency**. The pool fee and the launch settings follow the selected payout mode.
+
+## Highlights
+
+| Feature | What you can do |
 | --- | --- |
-| **一键准备，一键开始** | 自动匹配锄头与矿池。缺少的版本会下载、校验并安装，无需编写 BAT 或启动参数。|
-| **版本管理集中处理** | 选择锄头版本，查看更新说明、下载进度和速度。更新当前版本，或单独保留历史锄头；|
-| **运行状态一眼可见** | 主面板展示总算力，日志顶部固定显卡状态。支持接受／拒绝份额和连接状态识别。 |
-| **按型号调校显卡** | 自动识别独立显卡并按型号分组。预设可填入核心最小／最大频率、核心偏移、显存频率与功耗参数，核对后手动应用。 ||
-| **本地钱包与加密备份** | 在地址栏旁创建钱包，导出加密备份，并在本机恢复。钱包密码与助记词在本机处理。 |
-| **设备重启自动接续** | 开机自启、自动应用超频、自动开启任务。 |
-| **插件创意工坊** | API接口公开，可根据自身需求下载库中插件、或自行开发。（未来更新） |
+| **Prepare and start in one flow** | Automatically match miners with compatible pools. Missing versions are downloaded, verified and installed, without writing BAT files or startup arguments. |
+| **Manage versions in one place** | Choose miner versions, read release notes and track download progress and speed. Update the current version or keep older miner versions separately. |
+| **See what is happening** | View total hashrate on the main panel, with GPU status pinned above the logs. Accepted/rejected shares and connection status are also recognized. |
+| **Tune GPUs by model** | Detect discrete GPUs and group matching models. Presets fill minimum/maximum core clocks, core offset, memory clock and power settings for manual review and application. |
+| **Local wallet and encrypted backups** | Create a wallet beside the address field, export an encrypted backup and restore it locally. Wallet passwords and recovery words are handled on your computer. |
 
-## 展示图
+### Updates that preserve your choices
 
-<p align="center">
-  <img src="assets/test.png" width="1300" height="720" alt="PearlBox miner test">
-</p>
+- **Client:** the update center offers the latest client release and preserves local wallet data and settings.
+- **Miners:** new releases can replace the current version; older releases can be kept separately. The bundled PearlFortune is also updatable.
+- **Downloads:** track progress and speed, retry interrupted connections and resume when supported by the server. Files are verified before installation.
+- **Notifications:** equal or older versions do not trigger upgrade notices. Ignored releases remain available for manual updates.
 
-### 更新时保留选择
+## Quick start
 
-- **客户端**：更新中心提供最新版，更新后沿用本地钱包与设置。
-- **锄头**：新版可替换当前版本，历史版可以单独下载保留；内置 PearlFortune 同样支持更新。
-- **下载**：展示进度和速度，连接中断时重试；服务器支持时可续传，文件校验通过后才安装。
-- **提醒**：相同版本或更旧版本不会触发升级提醒，忽略某次发布后仍可手动更新。
+1. **Download and open**  
+   Get the Windows EXE from this repository's **Releases** page and run it. Confirm the Windows administrator prompt when launching.
 
-## 快速开始
+2. **Choose and configure**  
+   Select a miner, version and pool. Enter your own **PRL payout address** and worker name. If you need a wallet, use **Create wallet** beside the address field and save your recovery words and encrypted backup first.
 
-1. **下载并打开**  
-   从本仓库的 **Releases** 获取 Windows EXE运行。启动时按 Windows 提示确认管理员权限。
+3. **Start mining**  
+   Click **Start mining**. Missing miner software is prepared automatically before launch. Watch hashrate and logs on the main panel; use **Stop mining** to end the session.
 
-2. **选择并填写**  
-   选择锄头、版本和矿池，填写自己的 **PRL 收款地址**与矿工名。没有钱包时，可点击地址旁的“申请钱包”，先保存助记词和加密备份。
+GPU tuning is optional and requires manual confirmation. Launch at login and automatic mining are off by default and can be enabled in the advanced panel. Automatic mining does not apply GPU tuning settings.
 
-3. **开始挖矿**  
-   点击“开始挖矿”。缺少的锄头会自动准备，完成后启动；在主面板查看算力与日志，点击“停止挖矿”结束本次运行。
+### Requirements
 
-显卡调校按需单独设置，应用前需要手动确认。“开机自启动”和“自动启动”默认关闭，可在高级面板开启；自动启动不会自动应用超频参数。
+- Windows 10 / 11, 64-bit.
+- Microsoft Edge WebView2 Runtime; follow the app's installation prompt if it is missing.
+- Hardware and drivers supported by the selected miner. GPU tuning currently targets supported NVIDIA discrete GPUs; support for other vendors is primarily device detection.
 
-### 运行环境
+The single EXE is the distribution format. Runtime components, miners and application data are prepared locally, so disk usage exceeds the download size.
 
-- Windows 10 / 11，64 位。
-- Microsoft Edge WebView2 Runtime；缺少时可按应用提示安装。
-- 显卡与驱动需满足所选锄头的要求。当前显卡调校面向受支持的 NVIDIA 独立显卡，其他厂商暂以设备识别为主。
+## Miner adapters
 
-单 EXE 指分发形式。首次运行会在本机准备运行组件、锄头与数据，实际占用空间大于下载体积。
-
-## 锄头适配
-
-| 软件 | 获取方式 |
+| Software | Availability |
 | --- | --- |
-| [PearlFortune](https://github.com/pearlfortune/pearl-miner) | 客户端内置，可通过服务端更新 |
-| [SRBMiner-MULTI](https://github.com/doktor83/SRBMiner-Multi) | 按服务端发布版本下载 |
-| [OneZeroMiner](https://github.com/OneZeroMiner/onezerominer) | 按服务端发布版本下载 |
+| [PearlFortune](https://github.com/pearlfortune/pearl-miner) | Bundled with the client; updatable through the server |
+| [SRBMiner-MULTI](https://github.com/doktor83/SRBMiner-Multi) | Downloaded from server-published releases |
+| [OneZeroMiner](https://github.com/OneZeroMiner/onezerominer) | Downloaded from server-published releases |
 
+## Wallet
 
-## 钱包
+Wallet passwords, recovery words and private keys are handled locally and are not uploaded to the configuration server. Keep your own wallet backups. For transfers, restore and use the [official Pearl wallet](https://github.com/pearl-research-labs/pearl).
 
-钱包密码、助记词与私钥在本机处理，不上传到配置服务器。请自行保存钱包备份；需要转账时，可通过 [Pearl 官方钱包](https://github.com/pearl-research-labs/pearl) 恢复并使用。
+## Usage notes
 
-## 费率
+- Clock, offset and power ranges depend on the GPU and driver. Preset hashrates are references; use stable measurements from your own machine.
+- Missing or stale monitoring values are shown as “—”.
+- Stop mining before installing/removing miners or updating the client. If you move the EXE, enable launch-at-login again to update its path.
+- Windows and Linux clients currently mine PRL. USDT is an optional payout currency at participating pools.
 
-dev fee 1%,用于补贴服务器费用。*Beta测试期间无开发费用*
+## Components and licensing
 
-## 使用说明
+See [Third-party notices](THIRD-PARTY-NOTICES.md), also available from the lower-left corner of the client.
 
-- 频率、偏移与功耗的可设置范围由显卡及驱动决定；预设算力是参考值，实际表现以本机稳定运行为准。
-- 未提供或过期的监控指标显示为“—”；
-- 安装、删除锄头或更新客户端前，请先停止挖矿。更换 EXE 位置后，需要重新启用开机自启动以更新路径。
-- 当前发布的是 Windows 客户端，目前仅适配 PRL。
-
-## 组件与许可
-
-组件来源和许可见 [第三方许可证](THIRD-PARTY-NOTICES.md)，也可在客户端左下角查看。
-
-本仓库用于项目介绍与版本分发，目前不包含完整 PearlBox 源码。第三方软件遵循各自许可。PearlBox 是独立工具项目，上游软件与矿池名称用于说明兼容关系。
+This repository contains project information and release distribution materials, not the complete PearlBox source tree. Third-party software retains its own licenses. PearlBox is an independent tool; upstream software and pool names describe compatibility.
