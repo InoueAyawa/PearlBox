@@ -1,4 +1,4 @@
-<img width="1300" height="808" alt="image" src="https://github.com/user-attachments/assets/9d598948-7acb-4ca3-8e6d-cc2179491826" /><p align="center">
+<p align="center">
   <img src="assets/pearlbox-logo.png" width="96" height="96" alt="PearlBox 猫猫矿工 Logo">
 </p>
 
