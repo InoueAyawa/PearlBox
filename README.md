@@ -4,7 +4,7 @@
 
 <h1 align="center">PearlBox</h1>
 
-<p align="center"><strong>Pearl mining starts with your choice.</strong></p>
+<p align="center"><strong>Take anyone easy to start Pearl</strong></p>
 
 <p align="center">
   <a href="https://pearlbox.app">Website</a> ·
@@ -13,79 +13,53 @@
   <a href="README.ru.md">Русский</a>
 </p>
 
-PearlBox brings miners, pools, GPU tuning, updates and a local wallet into one Windows desktop app. Enter your own PRL payout address and worker name, choose a miner and pool, and start mining.
+PearlBox brings mining software, pools, GPU tuning, updates and a local wallet into one Windows client. Choose a miner and a pool, enter your PRL address and worker name, and you’re ready to mine.
 
-**Choose a miner and version → Select a compatible pool → Enter your address → Start mining**
+**Choose a miner and version → Pick a compatible pool → Enter your payout address → Start mining**
 
-This overview covers client **1.0.0**.
+This guide covers client version **1.0.0**.
 
-Import local plugins from Advanced → Plugins → ＋. The dashboard includes a GPU table and copyable logs; startup and tuning options are grouped under Unattended mode.
-
-Linux x64 offers a GTK desktop and a browser UI for headless rigs, initially supporting NVIDIA PearlFortune CUDA 12/13. The plugin workshop on Windows and Linux offers a fleet controller, managed device agent and optional XMR CPU dual mining.
-
-PearlBox opens in English. The first-run guide can be skipped and reopened from **Advanced → Quick guide**. On compatible pools, select **Receive USDT** beside the wallet address. A second address field shows the conversion fee and payout network; the regular pool fee stays beside the pool.
-
-On Peryn, OneZeroMiner and MH-Miner can switch between PPS+ and PPLNS next to **Test latency**. The pool fee and the launch settings follow the selected payout mode.
-
-## Highlights
+## Features
 
 | Feature | What you can do |
 | --- | --- |
-| **Prepare and start in one flow** | Automatically match miners with compatible pools. Missing versions are downloaded, verified and installed, without writing BAT files or startup arguments. |
-| **Manage versions in one place** | Choose miner versions, read release notes and track download progress and speed. Update the current version or keep older miner versions separately. |
-| **See what is happening** | View total hashrate on the main panel, with GPU status pinned above the logs. Accepted/rejected shares and connection status are also recognized. |
-| **Tune GPUs by model** | Detect discrete GPUs and group matching models. Presets fill minimum/maximum core clocks, core offset, memory clock and power settings for manual review and application. |
-| **Local wallet and encrypted backups** | Create a wallet beside the address field, export an encrypted backup and restore it locally. Wallet passwords and recovery words are handled on your computer. |
+| **Start mining in one click** | Choose a miner to see compatible pools. If the selected version is missing, PearlBox downloads, verifies and installs it. No batch files or command-line arguments to write. |
+| **Manage miner versions** | Choose a version, read its release notes and see download progress and speed. Update your current miner or keep an older version alongside it. |
+| **Monitor a session** | See total hashrate on the dashboard. GPU readings stay at the top of the log, and PearlBox recognizes accepted and rejected shares as well as connection status. |
+| **Tune GPUs by model** | PearlBox detects discrete GPUs and groups them by model. A preset fills in minimum and maximum core clocks, core offset, memory clock and power limit. Review the values before applying them. |
+| **Create and back up a local wallet** | Create a wallet next to the address field, export an encrypted backup and restore it locally. Your password and recovery phrase are handled locally. |
+| **Plugin workshop** | Install optional features as plugins. Build your own monitoring plugin with the [plugin API](docs/WORKSHOP-API.en.md), or use plugins made by PearlBox. |
 
-### Updates that preserve your choices
+## Example
 
-- **Client:** the update center offers the latest client release and preserves local wallet data and settings.
-- **Miners:** new releases can replace the current version; older releases can be kept separately. The bundled PearlFortune is also updatable.
-- **Downloads:** track progress and speed, retry interrupted connections and resume when supported by the server. Files are verified before installation.
-- **Notifications:** equal or older versions do not trigger upgrade notices. Ignored releases remain available for manual updates.
+<img width="1300" height="808" alt="PearlBox in use" src="https://github.com/user-attachments/assets/5f48e492-3207-4e63-9edd-6aab9e7b1a1d" />
 
 ## Quick start
 
-1. **Download and open**  
-   Get the Windows EXE from this repository's **Releases** page and run it. Confirm the Windows administrator prompt when launching.
+1. **Download and open PearlBox.** Download the Windows EXE from this repository’s **Releases** and run it. Approve the Windows administrator prompt at startup.
+2. **Set up your worker.** Choose your miner, version and pool, then enter your **PRL payout address** and worker name. If you don’t have a wallet, select **Create wallet** next to the address field. Save the recovery phrase and an encrypted backup before mining.
+3. **Start mining.** Select **Start mining**. PearlBox installs the miner first if needed, then starts the session. Check the hashrate and log on the dashboard. Select **Stop mining** to end the session.
 
-2. **Choose and configure**  
-   Select a miner, version and pool. Enter your own **PRL payout address** and worker name. If you need a wallet, use **Create wallet** beside the address field and save your recovery words and encrypted backup first.
+GPU tuning is optional and requires manual confirmation before applying changes. **Open at sign-in** and **Auto-start mining** are off by default. You can enable them under **Advanced**. Enabling automatic mining alone does not apply overclock settings.
 
-3. **Start mining**  
-   Click **Start mining**. Missing miner software is prepared automatically before launch. Watch hashrate and logs on the main panel; use **Stop mining** to end the session.
+### System requirements
 
-GPU tuning is optional and requires manual confirmation. Launch at login and automatic mining are off by default and can be enabled in the advanced panel. Automatic mining does not apply GPU tuning settings.
-
-### Requirements
-
-- Windows 10 / 11, 64-bit.
-- Microsoft Edge WebView2 Runtime; follow the app's installation prompt if it is missing.
-- Hardware and drivers supported by the selected miner. GPU tuning currently targets supported NVIDIA discrete GPUs; support for other vendors is primarily device detection.
-
-The single EXE is the distribution format. Runtime components, miners and application data are prepared locally, so disk usage exceeds the download size.
-
-## Miner adapters
-
-| Software | Availability |
-| --- | --- |
-| [PearlFortune](https://github.com/pearlfortune/pearl-miner) | Bundled with the client; updatable through the server |
-| [SRBMiner-MULTI](https://github.com/doktor83/SRBMiner-Multi) | Downloaded from server-published releases |
-| [OneZeroMiner](https://github.com/OneZeroMiner/onezerominer) | Downloaded from server-published releases |
+- Windows 10 or 11, 64-bit.
+- Your GPU and driver must meet the requirements of the miner you choose. PearlBox was developed with NVIDIA drivers from the 610.x series.
 
 ## Wallet
 
-Wallet passwords, recovery words and private keys are handled locally and are not uploaded to the configuration server. Keep your own wallet backups. For transfers, restore and use the [official Pearl wallet](https://github.com/pearl-research-labs/pearl).
+Your wallet password, recovery phrase and private keys stay on your device and are never sent to the server. Keep your own backup. To send funds, restore your wallet in the [official Pearl wallet](https://github.com/pearl-research-labs/pearl).
 
 ## Usage notes
 
-- Clock, offset and power ranges depend on the GPU and driver. Preset hashrates are references; use stable measurements from your own machine.
-- Missing or stale monitoring values are shown as “—”.
-- Stop mining before installing/removing miners or updating the client. If you move the EXE, enable launch-at-login again to update its path.
-- Windows and Linux clients currently mine PRL. USDT is an optional payout currency at participating pools.
+- Your GPU and driver determine the available clock, offset and power ranges. Preset hashrates are estimates; use the results your own hardware can sustain.
+- A dash (—) means a monitoring value is unavailable or out of date.
+- Stop mining before installing or removing a miner or updating the client. If you move the Windows EXE, re-enable **Open at sign-in** to update the startup path.
+- Both the Windows and Linux clients mine PRL. Some pools offer USDT as an optional payout currency.
 
-## Components and licensing
+## Components and licenses
 
-See [Third-party notices](THIRD-PARTY-NOTICES.md), also available from the lower-left corner of the client.
+See [Third-party licenses](THIRD-PARTY-NOTICES.md) for component sources and licenses. You can also open the list from the bottom-left corner of the client.
 
-This repository contains project information and release distribution materials, not the complete PearlBox source tree. Third-party software retains its own licenses. PearlBox is an independent tool; upstream software and pool names describe compatibility.
+This repository introduces the project and distributes releases. It does not currently include the full PearlBox source code. Third-party software is subject to its own licenses. PearlBox is an independent project; upstream software and pool names identify compatible products and services.
