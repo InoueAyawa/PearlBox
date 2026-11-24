@@ -4,7 +4,7 @@
 
 <h1 align="center">PearlBox</h1>
 
-<p align="center"><strong>让 Pearl 挖矿，从选择开始。</strong></p>
+<p align="center"><strong>村口老奶奶来了都可以一键使用的整合包</strong></p>
 
 <p align="center">Windows 单 EXE · Linux x64 桌面与网页 · 简体中文 / English / Русский</p>
 
