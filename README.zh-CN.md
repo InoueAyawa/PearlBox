@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="assets/pearlbox-logo.png" width="96" height="96" alt="PearlBox 猫猫矿工 Logo">
+  <img src="assets/pearlbox-logo.png" width="96" height="96" alt="PearlBox cat Logo">
 </p>
 
 <h1 align="center">PearlBox</h1>
 
-<p align="center"><strong>村口老奶奶来了都可以一键使用的整合包</strong></p>
+<p align="center"><strong>村口老奶奶都能一键使用的整合包</strong></p>
 
 <p align="center">
   <a href="https://pearlbox.app">官网</a> ·
@@ -27,9 +27,9 @@ PearlBox 将锄头、矿池、显卡调校、版本更新与本地钱包整合�
 | **一键准备，一键开始** | 自动匹配锄头与矿池。缺少的版本会下载、校验并安装，无需编写 BAT 或启动参数。|
 | **版本管理集中处理** | 选择锄头版本，查看更新说明、下载进度和速度。更新当前版本，或单独保留历史锄头；|
 | **运行状态一眼可见** | 主面板展示总算力，日志顶部固定显卡状态。支持接受／拒绝份额和连接状态识别。 |
-| **按型号调校显卡** | 自动识别独立显卡并按型号分组。预设可填入核心最小／最大频率、核心偏移、显存频率与功耗参数，核对后手动应用。 ||
+| **按型号调校显卡** | 自动识别独立显卡并按型号分组。预设可填入核心最小／最大频率、核心偏移、显存频率与功耗参数，核对后手动应用。 |
 | **本地钱包与加密备份** | 在地址栏旁创建钱包，导出加密备份，并在本机恢复。钱包密码与助记词在本机处理。 |
-| **插件工坊** | 额外功能通过插件安装，可自行开发或使用Pearlbox制作的插件。 |
+| **插件工坊** | 额外功能通过插件安装，可通过[插件 API 文档](docs/WORKSHOP-API.md)自行开发监测插件，或使用 PearlBox 制作的插件。 |
 
 ## 使用例
 <img width="1300" height="808" alt="image" src="https://github.com/user-attachments/assets/5f48e492-3207-4e63-9edd-6aab9e7b1a1d" />
@@ -64,7 +64,6 @@ PearlBox 将锄头、矿池、显卡调校、版本更新与本地钱包整合�
 - 未提供或过期的监控指标显示为“—”；
 - 安装、删除锄头或更新客户端前，请先停止挖矿。更换 EXE 位置后，需要重新启用开机自启动以更新路径。
 - Windows 和 Linux 客户端目前均挖取 PRL；USDT 是部分矿池提供的可选结算币种。
-- 本项目dev fee 1%，用于补贴服务器费用。通过每100分钟中1分钟挖取项目方地址实现。
 
 ## 组件与许可
 
