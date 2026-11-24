@@ -1,0 +1,1537 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "PearlBox Workshop",
+    "version": "1.0.0",
+    "description": "Local API. Linux additionally requires the HttpOnly browser session issued by the startup link."
+  },
+  "security": [
+    {
+      "localBearer": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "localBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/workshop": {
+      "get": {
+        "summary": "Catalog and installed state",
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/schema": {
+      "get": {
+        "summary": "This OpenAPI document",
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/import": {
+      "post": {
+        "summary": "Import a local descriptor. Import does not enable mining or remote control.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "pearlboxPlugin",
+                      "type",
+                      "id"
+                    ],
+                    "properties": {
+                      "pearlboxPlugin": {
+                        "const": 1
+                      },
+                      "type": {
+                        "const": "builtin"
+                      },
+                      "id": {
+                        "enum": [
+                          "control-master",
+                          "control-agent",
+                          "cpu-xmr"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "pearlboxPlugin",
+                      "type",
+                      "id",
+                      "name",
+                      "version",
+                      "metrics"
+                    ],
+                    "properties": {
+                      "pearlboxPlugin": {
+                        "const": 1
+                      },
+                      "type": {
+                        "const": "monitor"
+                      },
+                      "id": {
+                        "type": "string",
+                        "pattern": "^local-[a-z0-9][a-z0-9-]{0,40}$"
+                      },
+                      "name": {
+                        "type": "string",
+                        "maxLength": 60
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "metrics": {
+                        "type": "array",
+                        "maxItems": 5,
+                        "minItems": 1,
+                        "uniqueItems": true,
+                        "items": {
+                          "enum": [
+                            "hashrate",
+                            "shares",
+                            "power",
+                            "temperature",
+                            "uptime"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/remove-local": {
+      "post": {
+        "summary": "Remove an imported monitor",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/install": {
+      "post": {
+        "operationId": "control-master.install",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/enable": {
+      "post": {
+        "operationId": "control-master.enable",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/disable": {
+      "post": {
+        "operationId": "control-master.disable",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/uninstall": {
+      "post": {
+        "operationId": "control-master.uninstall",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/login": {
+      "post": {
+        "operationId": "control-master.login",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "server": {
+                    "type": "string",
+                    "maxLength": 2048
+                  },
+                  "username": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "password": {
+                    "type": "string",
+                    "maxLength": 256
+                  }
+                },
+                "required": [
+                  "server",
+                  "username",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/logout": {
+      "post": {
+        "operationId": "control-master.logout",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/devices": {
+      "post": {
+        "operationId": "control-master.devices",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/claim": {
+      "post": {
+        "operationId": "control-master.claim",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "maxLength": 12
+                  }
+                },
+                "required": [
+                  "code"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/job": {
+      "post": {
+        "operationId": "control-master.job",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceId": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "action": {
+                    "enum": [
+                      "status",
+                      "start",
+                      "stop"
+                    ]
+                  }
+                },
+                "required": [
+                  "deviceId",
+                  "action"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/history": {
+      "post": {
+        "operationId": "control-master.history",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/revoke": {
+      "post": {
+        "operationId": "control-master.revoke",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceId": {
+                    "type": "string",
+                    "maxLength": 80
+                  }
+                },
+                "required": [
+                  "deviceId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/setup": {
+      "post": {
+        "operationId": "control-master.setup",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "server": {
+                    "type": "string",
+                    "maxLength": 2048
+                  },
+                  "username": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "password": {
+                    "type": "string",
+                    "maxLength": 256
+                  },
+                  "token": {
+                    "type": "string",
+                    "maxLength": 128
+                  }
+                },
+                "required": [
+                  "server",
+                  "username",
+                  "password",
+                  "token"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/accounts": {
+      "post": {
+        "operationId": "control-master.accounts",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/create-account": {
+      "post": {
+        "operationId": "control-master.create-account",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "password": {
+                    "type": "string",
+                    "maxLength": 256
+                  }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/vip": {
+      "post": {
+        "operationId": "control-master.vip",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": {
+                    "type": "string",
+                    "maxLength": 80
+                  },
+                  "plan": {
+                    "enum": [
+                      "",
+                      "basic",
+                      "pro",
+                      "fleet"
+                    ]
+                  },
+                  "vipUntil": {
+                    "type": "integer"
+                  },
+                  "rateGroup": {
+                    "type": "string",
+                    "maxLength": 64
+                  }
+                },
+                "required": [
+                  "userId",
+                  "plan",
+                  "vipUntil"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-master/batch": {
+      "post": {
+        "operationId": "control-master.batch",
+        "tags": [
+          "control-master"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceIds": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 50,
+                    "items": {
+                      "type": "string",
+                      "maxLength": 80
+                    }
+                  },
+                  "action": {
+                    "enum": [
+                      "status",
+                      "start",
+                      "stop"
+                    ]
+                  }
+                },
+                "required": [
+                  "deviceIds",
+                  "action"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/install": {
+      "post": {
+        "operationId": "control-agent.install",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/enable": {
+      "post": {
+        "operationId": "control-agent.enable",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/disable": {
+      "post": {
+        "operationId": "control-agent.disable",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/uninstall": {
+      "post": {
+        "operationId": "control-agent.uninstall",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/pair": {
+      "post": {
+        "operationId": "control-agent.pair",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "server": {
+                    "type": "string",
+                    "maxLength": 2048
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 60
+                  }
+                },
+                "required": [
+                  "server",
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/check": {
+      "post": {
+        "operationId": "control-agent.check",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/confirm": {
+      "post": {
+        "operationId": "control-agent.confirm",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account": {
+                    "type": "string",
+                    "maxLength": 64
+                  },
+                  "confirm": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "account",
+                  "confirm"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/allow-start": {
+      "post": {
+        "operationId": "control-agent.allow-start",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "allow": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "allow"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/control-agent/disconnect": {
+      "post": {
+        "operationId": "control-agent.disconnect",
+        "tags": [
+          "control-agent"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/install": {
+      "post": {
+        "operationId": "cpu-xmr.install",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/enable": {
+      "post": {
+        "operationId": "cpu-xmr.enable",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/disable": {
+      "post": {
+        "operationId": "cpu-xmr.disable",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/uninstall": {
+      "post": {
+        "operationId": "cpu-xmr.uninstall",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/prepare": {
+      "post": {
+        "operationId": "cpu-xmr.prepare",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/configure": {
+      "post": {
+        "operationId": "cpu-xmr.configure",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pool": {
+                    "type": "string",
+                    "maxLength": 256
+                  },
+                  "wallet": {
+                    "type": "string",
+                    "maxLength": 106
+                  },
+                  "worker": {
+                    "type": "string",
+                    "maxLength": 32
+                  },
+                  "threads": {
+                    "type": "integer"
+                  },
+                  "tls": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "pool",
+                  "wallet",
+                  "worker",
+                  "threads",
+                  "tls"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/start": {
+      "post": {
+        "operationId": "cpu-xmr.start",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "confirm": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "confirm"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    },
+    "/api/v1/workshop/cpu-xmr/stop": {
+      "post": {
+        "operationId": "cpu-xmr.stop",
+        "tags": [
+          "cpu-xmr"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "JSON result"
+          },
+          "400": {
+            "description": "Invalid input or state"
+          },
+          "401": {
+            "description": "Missing local bearer"
+          },
+          "403": {
+            "description": "Invalid browser session or origin"
+          }
+        }
+      }
+    }
+  }
+}
