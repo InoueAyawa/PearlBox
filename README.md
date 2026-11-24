@@ -6,8 +6,6 @@
 
 <p align="center"><strong>Pearl mining starts with your choice.</strong></p>
 
-<p align="center">Windows single EXE · Linux x64 desktop and web · 简体中文 / English / Русский</p>
-
 <p align="center">
   <a href="https://pearlbox.app">Website</a> ·
   <a href="#quick-start">Quick start</a> ·
